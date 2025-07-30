@@ -6,16 +6,32 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router";
+import Root from './Components/Root/Root.jsx';
+import Home from './Components/Home/Home.jsx';
+import Mobiles from './Components/Mobiles/Mobiles.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello World</div>,
+    Component: Root,
+    children: [
+      { index: true, Component: Home },
+      { path: "mobiles", Component: Mobiles },
+      { path: "Home", Component: Home }
+    ]
+  },
+  {
+    path: "/About",
+    element: <div>About</div>,
+  },
+  {
+    path: "/Home",
+    element: <div>Home</div>,
   },
 ]);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-   <RouterProvider router={router} ></RouterProvider>
+    <RouterProvider router={router} ></RouterProvider>
   </StrictMode>,
 )
